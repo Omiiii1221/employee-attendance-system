@@ -1,53 +1,57 @@
 <?php
-include '../config/db.php'; // Include database connection
-include '../includes/header.php'; // Include the header
+session_start();
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: ../index.php"); // Redirect to login if not authenticated
+    exit;
+}
+
+// Set the page title
+$page_title = "Admin Dashboard";
+
+// Include database connection and header
+include '../config/db.php';
+include '../includes/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../assets/css/styles.css">
-</head>
-<body>
-    <?php include '../includes/navbar.php'; ?> <!-- Include navigation bar -->
-    
-    <div class="container">
-        <h1>Admin Dashboard</h1>
-        <div class="dashboard-cards">
-            <div class="card">
-                <h2>Total Employees</h2>
-                <p>
-                    <?php
-                    // Query to count employees
-                    $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM employees");
+<?php include '../includes/navbar.php'; ?> <!-- Include navigation bar -->
+
+<div class="container">
+    <h1>Admin Dashboard</h1>
+    <div class="dashboard-cards">
+        <!-- Total Employees -->
+        <div class="card">
+            <h2>Total Employees</h2>
+            <p>
+                <?php
+                $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM employees");
+                if ($result) {
                     $data = mysqli_fetch_assoc($result);
                     echo $data['total'];
-                    ?>
-                </p>
+                } else {
+                    echo "Error fetching data.";
+                }
+                ?>
+            </p>
+            <a href="add_employee.php" class="btn">Add New Employee</a>
+        </div>
 
-                <a href="add_employee.php" class="btn">Add New Employee</a>
-
-
-            </div>
-            <div class="card">
-                <h2>Total Attendance Records</h2>
-                <p>
-                    <?php
-                    // Query to count attendance
-                    $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM attendance");
+        <!-- Total Attendance Records -->
+        <div class="card">
+            <h2>Total Attendance Records</h2>
+            <p>
+                <?php
+                $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM attendance");
+                if ($result) {
                     $data = mysqli_fetch_assoc($result);
                     echo $data['total'];
-                    ?>
-                </p>
-                
-                <a href="manage_attendance.php" class="btn">Add New attendance</a>
-            </div>
+                } else {
+                    echo "Error fetching data.";
+                }
+                ?>
+            </p>
+            <a href="manage_attendance.php" class="btn">Manage Attendance</a>
         </div>
     </div>
-    
-    <?php include '../includes/footer.php'; ?> <!-- Include footer -->
-</body>
-</html>
+</div>
+
+<?php include '../includes/footer.php'; ?> <!-- Include footer -->

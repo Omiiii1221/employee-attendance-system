@@ -1,6 +1,5 @@
 /* Universal Styles */
 * {
-    margin-top: 50px;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,8 +8,8 @@
 
 body {
     margin-top: 50px;
-    background-color: #f4f7fc;
-    color: #333;
+    background-color: rgb(245, 239, 231); /* Light beige */
+    color: rgb(33, 53, 85); /* Dark blue */
 }
 
 a {
@@ -19,104 +18,74 @@ a {
 }
 
 h1 {
-    margin-top: 100px;
     text-align: center;
     font-size: 2rem;
-    color: #333;
+    color: rgb(33, 53, 85); /* Dark blue */
     margin-bottom: 20px;
 }
 
 /* Container */
 .container {
-    margin-top: 80px;
-    max-width: 900px;
+    max-width: 600px;
     margin: 30px auto;
     padding: 20px;
-    background-color: white;
+    background-color: rgb(245, 239, 231); /* Light beige */
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(33, 53, 85, 0.1);
 }
 
-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
 }
 
-th, td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-
-th {
-    background-color: #007bff;
-    color: white;
-}
-
-td {
-    background-color: #f9f9f9;
-    color: #555;
-}
-
-/* Table Row Hover Effect */
-tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Button Styling */
-a.btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
+label {
     font-weight: bold;
-    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    color: rgb(33, 53, 85); /* Dark blue */
+}
+
+input, select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid rgb(62, 88, 121); /* Medium blue */
+    border-radius: 5px;
+    background-color: rgb(245, 239, 231); /* Light beige */
+    color: rgb(33, 53, 85); /* Dark blue */
+}
+
+button {
+    padding: 12px;
+    background-color: rgb(62, 88, 121); /* Medium blue */
+    color: rgb(245, 239, 231); /* Light beige */
+    font-size: 1rem;
+    font-weight: bold;
     border-radius: 6px;
     transition: background-color 0.3s ease;
+    border: none;
 }
 
-a.btn:hover {
-    background-color: #218838;
+button:hover {
+    background-color: rgb(33, 53, 85); /* Dark blue */
 }
 
-a.btn:active {
-    background-color: #1e7e34;
-}
-
-/* Action Link Styling */
-a {
-    color: #007bff;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #0056b3;
-}
-
-a:active {
-    color: #003f7f;
-}
-
-/* Confirm Message Styling */
-a[onclick] {
-    cursor: pointer;
+button:active {
+    background-color: rgb(216, 196, 182); /* Muted brown */
 }
 
 /* Success/Error Messages */
-p {
+p.success {
+    color: rgb(62, 88, 121); /* Medium blue */
     text-align: center;
     font-size: 1rem;
-    color: #28a745; /* Green for success */
-    margin-top: 20px;
 }
 
-/* Error Message */
 p.error {
-    color: #dc3545; /* Red for error */
+    color: rgb(216, 196, 182); /* Muted brown */
+    text-align: center;
+    font-size: 1rem;
 }
 
 /* Responsive Styles */
@@ -129,15 +98,11 @@ p.error {
         font-size: 1.5rem;
     }
 
-    table {
-        font-size: 0.9rem;
+    input, select {
+        padding: 8px;
     }
 
-    th, td {
-        padding: 10px;
-    }
-
-    a.btn {
+    button {
         font-size: 0.9rem;
     }
 }

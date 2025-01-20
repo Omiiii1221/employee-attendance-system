@@ -1,19 +1,18 @@
 <?php
-// Start the session to access session variables
+// Start the session
 session_start();
 
-// Check if the session is already started, and then clear all session data
-if (isset($_SESSION['user_id'])) {
-    // Unset session variables
-    session_unset();
-    session_destroy(); // Destroy the session
+// Clear all session data
+session_unset();
+session_destroy();
 
-    // Redirect the user to the login page
-    header("Location:../index.php");
-    exit(); // Make sure to exit after header redirect
-} else {
-    // If no user is logged in, redirect them to the login page directly
-    header("Location:../index.php");
-    exit();
+// Clear the session cookie
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
 }
+
+// Redirect to the login page
+header("Location: ../index.php");
+exit(); // Ensure no further code runs
 ?>

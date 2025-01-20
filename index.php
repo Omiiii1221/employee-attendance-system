@@ -2,6 +2,10 @@
 session_start();
 include './config/db.php'; // Include database connection
 
+// Enable error reporting for debugging
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $role = mysqli_real_escape_string($conn, $_POST['role']);
     $username = mysqli_real_escape_string($conn, $_POST['username']);

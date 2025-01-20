@@ -14,10 +14,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             <li><a href="../admin/manage_employees.php">Manage Employees</a></li>
             <li><a href="../admin/manage_attendance.php">Manage Attendance</a></li>
             <li><a href="../admin/reports.php">Reports</a></li>
-            <li><a href="../auth/logout.php">Logout</li>
+            <li><a href="../auth/logout.php">Logout</a></li>
         </ul>
     </nav>
-    </div>
 </header>
 
 <script>
@@ -44,24 +43,19 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 <style>
     /* Navbar */
     .navbar {
-        background-color:#333;
-        /* Set the navbar background to transparent */
+        background-color: rgb(63, 16, 32); /* Primary color */
         padding: 0 0;
-        /* Remove any extra padding */
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         width: 100%;
         height: 100px;
-        /* Set fixed height to 70px */
         z-index: 1000;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-        /* Subtle shadow to maintain visibility */
         transition: top 0.3s ease-in-out, background-color 0.3s ease;
         display: flex;
         align-items: center;
-        /* Vertically center the contents */
     }
 
     /* Navbar container */
@@ -69,10 +63,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        /* Center items vertically */
         width: 100%;
         padding: 0 20px;
-        /* Adjusted for left and right padding */
     }
 
     /* Logo styling */
@@ -80,10 +72,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         margin-right: 100px;
         margin-left: 30px;
         font-size: 25px;
-        /* Reduced font size to fit within 70px height */
         font-weight: bold;
-        color: #fff;
-        /* Keep logo white for contrast */
+        color: rgb(245, 239, 231); /* Lightest color */
         letter-spacing: 1px;
         text-transform: uppercase;
         transition: color 0.3s ease;
@@ -97,37 +87,29 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
     .navbar nav ul li {
         margin-right: 50px;
-        /* Reduced space between items */
     }
 
     .navbar nav ul li a {
         text-decoration: none;
-        color: #fff;
-        /* Keep links white for contrast */
+        color: rgb(245, 239, 231); /* Lightest color */
         font-size: 20px;
-        /* Adjusted font size */
         padding: 8px 10px;
-        /* Reduced padding to make it fit within 70px height */
         border-radius: 25px;
         transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
     /* Hover effect for links */
     .navbar nav ul li a:hover {
-        background-color: #00c6ff;
+        background-color: rgb(62, 88, 121); /* Secondary color */
         transform: scale(1.05);
-        /* Slightly smaller scale for better fitting */
     }
 
     /* Mobile responsive adjustments */
     @media (max-width: 768px) {
         .navbar .container {
             flex-direction: row;
-            /* Keep elements in a row */
             justify-content: space-between;
-            /* Ensure space between logo and nav items */
             align-items: center;
-            /* Vertically center the items */
             padding: 0 10px;
         }
 
@@ -136,21 +118,18 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             list-style: none;
             width: auto;
             flex-direction: row;
-            /* Keep nav items in a row */
             margin-top: 0;
             padding: 0;
         }
 
         .navbar nav ul li {
             margin-right: 15px;
-            /* Add space between list items */
             margin-bottom: 0;
             text-align: left;
         }
 
         .navbar .logo {
             margin-left: auto;
-            /* Push the logo to the right */
             margin-bottom: 0;
         }
     }

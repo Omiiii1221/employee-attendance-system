@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../config/db.php'; // Include database connection
 include '../includes/header.php'; // Include the header
 

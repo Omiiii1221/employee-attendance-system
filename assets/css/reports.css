@@ -1,0 +1,162 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 50px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #5b5959;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: #272e2e;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+h1, h2 {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    color: #213555; /* Primary text color */
+}
+
+input, select, textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #3e5879; /* Border matches secondary color */
+    border-radius: 5px;
+    background-color: #f4f7fc; /* Light gray-blue background */
+    color: #213555; /* Input text matches primary color */
+    margin-bottom: 15px;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #007bff;
+}
+
+button {
+    padding: 12px;
+    background-color: #3e5879; /* Secondary color for buttons */
+    color: #f5f5f5; /* White text */
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #213555; /* Primary color for hover */
+}
+
+button:active {
+    background-color: #003f7f;
+}
+
+/* Success/Error Messages */
+p.success {
+    color: #28a745; /* Green for success */
+    text-align: center;
+    font-size: 1rem;
+}
+
+p.error {
+    color: #dc3545; /* Red for error */
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #213555; /* Primary color */
+    color: #f5f5f5; /* Lightest color */
+}
+
+td {
+    background-color: #f9f9f9;
+    color: #555;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Button Link Styling */
+a.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+a.btn:hover {
+    background-color: #218838;
+}
+
+a.btn:active {
+    background-color: #1e7e34;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    input, select, button {
+        font-size: 0.95rem;
+    }
+}

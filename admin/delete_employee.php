@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: ../index.php"); // Redirect to login if not authenticated
+    exit;
+}
 include '../config/db.php'; // Include database connection
 
 // Check if 'id' parameter is set

@@ -1,9 +1,9 @@
 <?php
+session_start();
 include '../config/db.php'; // Include database connection
 include '../includes/header.php'; // Include the header
 
 // Fetch employee details (assuming employee_id is stored in the session)
-session_start();
 $employee_id = $_SESSION['employee_id'];
 
 $stmt = $conn->prepare("SELECT * FROM employees WHERE id = ?");

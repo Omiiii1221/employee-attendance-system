@@ -1,22 +1,34 @@
 <?php
+session_start();
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: ../index.php"); // Redirect to login if not authenticated
+    exit;
+}
+
 include '../config/db.php'; // Include database connection
 include '../includes/header.php'; // Include the header
 
 // Handle deletion
 if (isset($_GET['delete_id'])) {
     $delete_id = $_GET['delete_id'];
-    $stmt = $conn->prepare("DELETE FROM attendance WHERE id = ?");
-    if ($stmt === false) {
-        die('Error preparing SQL statement: ' . $conn->error);
-    }
-    $stmt->bind_param("i", $delete_id);
 
-    if ($stmt->execute()) {
-        echo "<p>Attendance record deleted successfully!</p>";
+    // Validate delete_id to prevent SQL injection
+    if (is_numeric($delete_id)) {
+        $stmt = $conn->prepare("DELETE FROM attendance WHERE id = ?");
+        if ($stmt === false) {
+            die('Error preparing SQL statement: ' . $conn->error);
+        }
+        $stmt->bind_param("i", $delete_id);
+
+        if ($stmt->execute()) {
+            echo "<p>Attendance record deleted successfully!</p>";
+        } else {
+            echo "<p>Error: " . $stmt->error . "</p>";
+        }
+        $stmt->close();
     } else {
-        echo "<p>Error: " . $stmt->error . "</p>";
+        echo "<p>Invalid attendance ID.</p>";
     }
-    $stmt->close();
 }
 
 // Fetch attendance records
@@ -38,7 +50,7 @@ if ($stmt->execute()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Attendance</title>
-    <link rel="stylesheet" href="../assets/css/man_att.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
     <?php include '../includes/navbar.php'; ?> <!-- Include navigation bar -->
@@ -81,4 +93,4 @@ if ($stmt->execute()) {
 <?php
 // Close database connection
 $conn->close();
-?>      
+?>
