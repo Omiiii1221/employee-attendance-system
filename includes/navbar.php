@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header("Location: ../index.php"); // Redirect to login if not authenticated
     exit;
@@ -43,7 +45,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 <style>
     /* Navbar */
     .navbar {
-        background-color: rgb(63, 16, 32); /* Primary color */
+        background-color: rgb(33, 53, 85); /* Primary color */
         padding: 0 0;
         position: fixed;
         top: 0;
