@@ -9,6 +9,7 @@
     --font-family: 'Arial', sans-serif;
     --border-radius: 8px;
     --transition-speed: 0.3s;
+    --navbar-height: 100px; /* Height of the navbar */
 }
 
 /* Universal Styles */
@@ -23,7 +24,8 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
-    margin: 50px auto;
+    margin: 0;
+    padding-top: var(--navbar-height); /* Add padding to account for the fixed navbar */
 }
 
 /* Utility Classes */
@@ -56,12 +58,13 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1800px;
     margin: auto;
     padding: 20px;
     background: var(--background-color);
     border-radius: var(--border-radius);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: calc(var(--navbar-height) + 20px); /* Ensure the container is below the navbar */
 }
 
 /* Form Elements */
@@ -73,6 +76,7 @@ form {
 label {
     font-weight: bold;
     color: var(--text-color);
+    margin-bottom: 5px;
 }
 
 input, select, textarea {
@@ -100,6 +104,8 @@ button, .btn {
     font-weight: bold;
     cursor: pointer;
     transition: background-color var(--transition-speed);
+    text-align: center;
+    text-decoration: none;
 }
 
 button:hover, .btn:hover {
@@ -125,7 +131,7 @@ button:active, .btn:active {
 
 .alert.error {
     background: var(--accent-color);
-    color: var(--text-color);
+    color: var (--text-color);
 }
 
 /* Table */
@@ -155,25 +161,100 @@ td {
 tr:hover {
     background: var(--accent-color);
 }
-/* Ensure the layout covers the full viewport */
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
 
-body {
+/* Navbar */
+.navbar {
+    background-color: var(--primary-color);
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: var(--navbar-height);
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: top 0.3s ease-in-out, background-color 0.3s ease;
     display: flex;
-    flex-direction: column;
-}
-
-.wrapper {
-    flex: 1; /* Ensures the content takes up available space */
-    display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
 }
 
+.navbar .logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.navbar nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.navbar nav ul li {
+    margin-right: 20px;
+}
+
+.navbar nav ul li a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 18px;
+    padding: 8px 10px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar nav ul li a:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+/* Dashboard Cards */
+.dashboard-cards {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    background: var(--secondary-color);
+    color: var(--text-light);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(50% - 40px); /* Responsive two-column layout */
+    max-width: calc(50% - 40px);
+    text-align: center;
+}
+
+.card h2 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.card a.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: var(--text-light);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    transition: background-color var(--transition-speed);
+}
+
+.card a.btn:hover {
+    background: var(--accent-color);
+}
+
+/* Footer */
 footer {
     background-color: #212121; /* Dark background */
     color: #ffffff; /* White text */
@@ -203,19 +284,28 @@ footer a:hover {
     font-size: 20px;
 }
 
-
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
         padding: 15px;
     }
 
-    h1 {
-        font-size: 1.5rem;
+    .card {
+        flex: 1 1 100%; /* Full width on small screens */
+        max-width: 100%;
     }
 
-    input, select, button {
-        font-size: 0.95rem;
+    .navbar nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar nav ul li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .navbar .logo {
+        margin-bottom: 10px;
     }
 }

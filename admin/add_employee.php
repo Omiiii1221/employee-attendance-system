@@ -10,10 +10,12 @@ include '../includes/header.php'; // Include the header
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
+    $phone = $_POST['phone'];
     $department = $_POST['department'];
+    $date_of_joining = $_POST['date_of_joining'];
 
     // Insert into the database
-    $sql = "INSERT INTO employees (name, email, department) VALUES ('$name', '$email', '$department')";
+    $sql = "INSERT INTO employees (name, email, phone, department, date_of_joining) VALUES ('$name', '$email', '$phone', '$department', '$date_of_joining')";
     if (mysqli_query($conn, $sql)) {
         echo "<p>Employee added successfully!</p>";
     } else {
@@ -42,8 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
 
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="phone" required>
+
             <label for="department">Department</label>
             <input type="text" id="department" name="department" required>
+
+            <label for="date_of_joining">Date of Joining</label>
+            <input type="date" id="date_of_joining" name="date_of_joining" required>
 
             <button type="submit">Add Employee</button>
         </form>

@@ -13,13 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $employee_id = $_POST['employee_id'];
     $attendance_date = $_POST['attendance_date'];
     $status = $_POST['status'];
+    $check_in_time = $_POST['check_in_time'];
+    $check_out_time = $_POST['check_out_time'];
 
     // Prepare and execute the SQL query to insert attendance record
-    $stmt = $conn->prepare("INSERT INTO attendance (employee_id, date, status) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO attendance (employee_id, date, status, check_in_time, check_out_time) VALUES (?, ?, ?, ?, ?)");
     if ($stmt === false) {
         die('Error preparing SQL statement: ' . $conn->error);
     }
-    $stmt->bind_param("iss", $employee_id, $attendance_date, $status);
+    $stmt->bind_param("issss", $employee_id, $attendance_date, $status, $check_in_time, $check_out_time);
 
     if ($stmt->execute()) {
         echo "<p>Attendance record added successfully!</p>";
@@ -76,6 +78,16 @@ $employees_result = $stmt->get_result();
                     <option value="Late">Late</option>
                     <option value="On Leave">On Leave</option>
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label for="check_in_time">Check-in Time</label>
+                <input type="time" id="check_in_time" name="check_in_time">
+            </div>
+
+            <div class="form-group">
+                <label for="check_out_time">Check-out Time</label>
+                <input type="time" id="check_out_time" name="check_out_time">
             </div>
             
             <button type="submit" class="btn">Add Attendance</button>
