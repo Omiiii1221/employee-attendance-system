@@ -1,0 +1,39 @@
+Root Directory
+index.php: Main entry point for the application, handles login based on user role.
+admin Directory
+add_attendance.php: Handles adding new attendance records.
+add_employee.php: Handles adding new employees.
+dashboard.php: Admin dashboard with charts and statistics.
+db2.html: Static HTML for the employee dashboard.
+delete_employee.php: Handles deleting an employee.
+edit_attendance.php: Handles editing attendance records.
+edit_employee.php: Handles editing employee details.
+manage_attendance.php: Manages attendance records.
+manage_employees.php: Manages employee records.
+reports.php: Generates various reports.
+auth Directory
+forgot_password.php: Handles password reset requests.
+login.php: Handles user login.
+logout.php: Handles user logout.
+register.php: Handles user registration.
+reset_password.php: Handles password reset.
+config Directory
+db.php: Database connection configuration.
+employee Directory
+attendance.php: Displays attendance records for an employee.
+change_password.php: Allows employees to change their password.
+dashboard.php: Employee dashboard.
+profile.php: Allows employees to view and update their profile.
+includes Directory
+header.php: Common header file, includes session checks.
+navbar.php: Navigation bar for the application.
+footer.php: Common footer file.
+assets Directory
+css
+index.css: Styles for the main index page.
+reports.css: Styles for the reports page.
+styles.css: General styles for the application.
+js
+Script.js: JavaScript for form validation.
+error.php
+error.php: Displays a 404 error page.

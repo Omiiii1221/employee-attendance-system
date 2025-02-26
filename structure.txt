@@ -1,0 +1,39 @@
+employee-attendance-system/
+├── index.php
+├── admin/
+│   ├── add_attendance.php
+│   ├── add_employee.php
+│   ├── dashboard.php
+│   ├── db2.html
+│   ├── delete_employee.php
+│   ├── edit_attendance.php
+│   ├── edit_employee.php
+│   ├── manage_attendance.php
+│   ├── manage_employees.php
+│   └── reports.php
+├── auth/
+│   ├── forgot_password.php
+│   ├── login.php
+│   ├── logout.php
+│   ├── register.php
+│   └── reset_password.php
+├── config/
+│   └── db.php
+├── employee/
+│   ├── attendance.php
+│   ├── change_password.php
+│   ├── dashboard.php
+│   └── profile.php
+├── includes/
+│   ├── header.php
+│   ├── navbar.php
+│   └── footer.php
+├── assets/
+│   ├── css/
+│   │   ├── index.css
+│   │   ├── reports.css
+│   │   └── styles.css
+│   └── js/
+│       └── Script.js
+└── error.php
+    └── error.php
