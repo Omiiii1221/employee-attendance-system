@@ -4,7 +4,7 @@ employee-attendance-system/
 │   ├── add_attendance.php
 │   ├── add_employee.php
 │   ├── dashboard.php
-│   ├── db2.html
+│   ├── db2.html // not used in the project another design fpr dashbord
 │   ├── delete_employee.php
 │   ├── edit_attendance.php
 │   ├── edit_employee.php
