@@ -7,15 +7,16 @@
 
 body {
     margin-top: 50px;
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    color: #5b5959;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
     line-height: 1.6;
 }
 
 a {
     text-decoration: none;
-    color: #272e2e;
+    color: #007bff;
+    transition: color 0.3s ease;
 }
 
 a:hover {
@@ -23,76 +24,79 @@ a:hover {
 }
 
 h1, h2 {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Container */
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 30px auto;
-    padding: 20px;
+    padding: 25px;
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Form Styling */
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
 }
 
 label {
     font-weight: bold;
     margin-bottom: 5px;
     margin-top: 15px;
-    color: #213555; /* Primary text color */
+    color: #333;
 }
 
 input, select, textarea {
-    padding: 10px;
+    padding: 12px;
     font-size: 1rem;
-    border: 1px solid #3e5879; /* Border matches secondary color */
-    border-radius: 5px;
-    background-color: #f4f7fc; /* Light gray-blue background */
-    color: #213555; /* Input text matches primary color */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
     margin-bottom: 15px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input:focus, select:focus, textarea:focus {
     border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 button {
-    padding: 12px;
-    background-color: #3e5879; /* Secondary color for buttons */
-    color: #f5f5f5; /* White text */
+    padding: 14px;
+    background-color: #007bff;
+    color: #fff;
     font-size: 1rem;
     font-weight: bold;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     border: none;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #213555; /* Primary color for hover */
+    background-color: #0056b3;
 }
 
 button:active {
-    background-color: #003f7f;
+    background-color: #004085;
+    transform: scale(0.98);
 }
 
 /* Success/Error Messages */
 p.success {
-    color: #28a745; /* Green for success */
+    color: #28a745;
     text-align: center;
     font-size: 1rem;
 }
 
 p.error {
-    color: #dc3545; /* Red for error */
+    color: #dc3545;
     text-align: center;
     font-size: 1rem;
 }
@@ -106,14 +110,14 @@ table {
 }
 
 th, td {
-    padding: 12px;
+    padding: 15px;
     text-align: center;
     border: 1px solid #ddd;
 }
 
 th {
-    background-color: #213555; /* Primary color */
-    color: #f5f5f5; /* Lightest color */
+    background-color: #007bff;
+    color: #fff;
 }
 
 td {
@@ -129,13 +133,13 @@ tr:hover {
 a.btn {
     display: inline-block;
     margin-top: 20px;
-    padding: 10px 20px;
+    padding: 12px 25px;
     background-color: #28a745;
     color: white;
     font-weight: bold;
     text-align: center;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 a.btn:hover {
@@ -144,12 +148,13 @@ a.btn:hover {
 
 a.btn:active {
     background-color: #1e7e34;
+    transform: scale(0.98);
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
     .container {
-        padding: 15px;
+        padding: 20px;
     }
 
     h1 {

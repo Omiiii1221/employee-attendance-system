@@ -57,7 +57,7 @@ if ($stmt->execute()) {
     
     <div class="container">
         <h1>Manage Attendance</h1>
-        
+        <a href="add_attendance.php" class="btn">Add New Attendance</a>
         <table border="1">
             <thead>
                 <tr>
@@ -83,7 +83,7 @@ if ($stmt->execute()) {
             </tbody>
         </table>
         
-        <a href="add_attendance.php" class="btn">Add New Attendance</a>
+   
     </div>
     
     <?php include '../includes/footer.php'; ?> <!-- Include footer -->

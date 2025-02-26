@@ -62,7 +62,7 @@ if ($stmt->execute()) {
             echo "<p style='color: green;'>Employee deleted successfully!</p>";
         }
         ?>
-
+  <a href="add_employee.php" class="btn">Add New Employee</a>
         <table border="1">
             <thead>
                 <tr>
@@ -91,7 +91,7 @@ if ($stmt->execute()) {
             </tbody>
         </table>
 
-        <a href="add_employee.php" class="btn">Add New Employee</a>
+      
     </div>
 
     <?php include '../includes/footer.php'; ?> <!-- Include footer -->

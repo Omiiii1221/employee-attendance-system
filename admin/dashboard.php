@@ -69,13 +69,14 @@ while ($row = mysqli_fetch_assoc($monthlyAttendanceResult)) {
 
 <?php include '../includes/navbar.php'; ?> <!-- Include navigation bar -->
 
-<div class="container">
-    <h1>Admin Dashboard</h1>
-    <div class="dashboard-cards">
+<main style="flex: 1; padding: 20px;">
+    <h1 style="margin-bottom: 20px;">Welcome to Admin Dashboard</h1>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
         <!-- Total Employees -->
-        <div class="card">
+        <div style="flex: 1; min-width: 250px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 20px;">
             <h2>Total Employees</h2>
-            <p>
+            <p style="font-size: 24px; color: #4CAF50;">
                 <?php
                 $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM employees");
                 if ($result) {
@@ -86,13 +87,13 @@ while ($row = mysqli_fetch_assoc($monthlyAttendanceResult)) {
                 }
                 ?>
             </p>
-            <a href="add_employee.php" class="btn">Add New Employee</a>
+            <a href="add_employee.php" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #6a4bc7; color: white; border-radius: 4px; text-decoration: none;">Add New Employee</a>
         </div>
 
         <!-- Total Attendance Records -->
-        <div class="card">
+        <div style="flex: 1; min-width: 250px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 20px;">
             <h2>Total Attendance Records</h2>
-            <p>
+            <p style="font-size: 24px; color: #F44336;">
                 <?php
                 $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM attendance");
                 if ($result) {
@@ -103,56 +104,43 @@ while ($row = mysqli_fetch_assoc($monthlyAttendanceResult)) {
                 }
                 ?>
             </p>
-            <a href="manage_attendance.php" class="btn">Manage Attendance</a>
-        </div>
-
-        <!-- Present Employees Today -->
-        <div class="card">
-            <h2>Present Employees Today</h2>
-            <p>
-                <?php
-                $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM attendance WHERE date = '$today' AND status = 'Present'");
-                if ($result) {
-                    $data = mysqli_fetch_assoc($result);
-                    echo $data['total'];
-                } else {
-                    echo "Error fetching data.";
-                }
-                ?>
-            </p>
-        </div>
-
-       <!-- Absent Employees Today -->
-<div class="card">
-    <h2>Absent Employees Today</h2>
-    <p>
-        <?php
-        $result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM attendance WHERE date = '$today' AND status = 'Absent'");
-        if ($result) {
-            $data = mysqli_fetch_assoc($result);
-            echo $data['total'];
-        } else {
-            echo "Error fetching data: " . mysqli_error($conn);
-        }
-        ?>
-    </p>
-</div>
-
-        <!-- Placeholder for Graphs -->
-        <div class="card">
-            <h2>Attendance Overview</h2>
-            <canvas id="attendanceChart"></canvas>
-        </div>
-        <div class="card">
-            <h2>Monthly Attendance Line Chart</h2>
-            <canvas id="monthlyAttendanceLineChart"></canvas>
-        </div>
-        <div class="card">
-            <h2>Monthly Attendance Bar Chart</h2>
-            <canvas id="monthlyAttendanceBarChart"></canvas>
+            <a href="manage_attendance.php" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #6a4bc7; color: white; border-radius: 4px; text-decoration: none;">Manage Attendance</a>
         </div>
     </div>
-</div>
+
+    <!-- Charts Section -->
+    <div style="margin-top: 40px;">
+        <h2>Attendance Overview</h2>
+        <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 20px;">
+                <canvas id="attendanceChart" style="width: 100%; height: 400px;"></canvas>
+            </div>
+            <div style="flex: 1; min-width: 300px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 20px;">
+                <canvas id="weeklyAttendanceChart" style="width: 100%; height: 400px;"></canvas>
+            </div>
+            <div style="flex: 1; min-width: 300px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 20px;">
+                <canvas id="monthlyAttendanceChart" style="width: 100%; height: 400px;"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Charts -->
+    <div style="margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 100px;">
+            <h2>Monthly Attendance Line Chart</h2>
+            <div style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 20px;">
+                <canvas id="monthlyAttendanceLineChart"></canvas>
+            </div>
+        </div>
+
+        <div style="flex: 1; min-width: 150px;">
+            <h2>Monthly Attendance Bar Chart</h2>
+            <div style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 20px;">
+                <canvas id="monthlyAttendanceBarChart"></canvas>
+            </div>
+        </div>
+    </div>
+</main>
 
 <?php include '../includes/footer.php'; ?> <!-- Include footer -->
 
@@ -174,17 +162,12 @@ while ($row = mysqli_fetch_assoc($monthlyAttendanceResult)) {
         }]
     };
 
-    // Create the pie chart
     const ctx = document.getElementById('attendanceChart').getContext('2d');
-    const attendanceChart = new Chart(ctx, {
+    new Chart(ctx, {
         type: 'pie',
         data: attendanceOverviewData,
         options: {
-            responsive: true,
             plugins: {
-                legend: {
-                    position: 'top',
-                },
                 title: {
                     display: true,
                     text: 'Attendance Overview'
@@ -220,20 +203,15 @@ while ($row = mysqli_fetch_assoc($monthlyAttendanceResult)) {
         }]
     };
 
-    // Create the line chart
-    const ctxLine = document.getElementById('monthlyAttendanceLineChart').getContext('2d');
-    const monthlyAttendanceLineChart = new Chart(ctxLine, {
+    const ctxLine = document.getElementById('weeklyAttendanceChart').getContext('2d');
+    new Chart(ctxLine, {
         type: 'line',
         data: weeklyAttendanceLineData,
         options: {
-            responsive: true,
             plugins: {
-                legend: {
-                    position: 'top',
-                },
                 title: {
                     display: true,
-                    text: 'Monthly Attendance Line Chart'
+                    text: 'Weekly Attendance'
                 }
             }
         }
@@ -262,20 +240,15 @@ while ($row = mysqli_fetch_assoc($monthlyAttendanceResult)) {
         }]
     };
 
-    // Create the bar chart
-    const ctxBar = document.getElementById('monthlyAttendanceBarChart').getContext('2d');
-    const monthlyAttendanceBarChart = new Chart(ctxBar, {
+    const ctxBar = document.getElementById('monthlyAttendanceChart').getContext('2d');
+    new Chart(ctxBar, {
         type: 'bar',
         data: monthlyAttendanceBarData,
         options: {
-            responsive: true,
             plugins: {
-                legend: {
-                    position: 'top',
-                },
                 title: {
                     display: true,
-                    text: 'Monthly Attendance Bar Chart'
+                    text: 'Monthly Attendance'
                 }
             }
         }
