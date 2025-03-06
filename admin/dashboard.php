@@ -30,7 +30,7 @@ $attendanceOverviewQuery = "
 $attendanceOverviewResult = mysqli_query($conn, $attendanceOverviewQuery);
 $attendanceOverviewData = mysqli_fetch_assoc($attendanceOverviewResult);
 
-// Fetch weekly attendance data for the line chart
+// Fetch weekly attendance data for the charts
 $weeklyAttendanceQuery = "
     SELECT 
         WEEK(date) AS week,
@@ -47,24 +47,6 @@ $weeklyAttendanceData = [];
 while ($row = mysqli_fetch_assoc($weeklyAttendanceResult)) {
     $weeklyAttendanceData[] = $row;
 }
-
-// Fetch monthly attendance data for the bar chart
-$monthlyAttendanceQuery = "
-    SELECT 
-        WEEK(date) AS week,
-        SUM(CASE WHEN status = 'Present' THEN 1 ELSE 0 END) AS present,
-        SUM(CASE WHEN status = 'Absent' THEN 1 ELSE 0 END) AS absent,
-        SUM(CASE WHEN status = 'Late' THEN 1 ELSE 0 END) AS late,
-        SUM(CASE WHEN status = 'On Leave' THEN 1 ELSE 0 END) AS on_leave
-    FROM attendance
-    WHERE MONTH(date) = $currentMonth AND YEAR(date) = $currentYear
-    GROUP BY WEEK(date)
-";
-$monthlyAttendanceResult = mysqli_query($conn, $monthlyAttendanceQuery);
-$monthlyAttendanceData = [];
-while ($row = mysqli_fetch_assoc($monthlyAttendanceResult)) {
-    $monthlyAttendanceData[] = $row;
-}
 ?>
 
 <?php include '../includes/navbar.php'; ?> <!-- Include navigation bar -->
@@ -74,7 +56,7 @@ while ($row = mysqli_fetch_assoc($monthlyAttendanceResult)) {
 
     <div style="display: flex; flex-wrap: wrap; gap: 20px;">
         <!-- Total Employees -->
-        <div style="flex: 1; min-width: 250px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 20px;">
+        <div style="flex: 1; min-width: 200px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 15px;">
             <h2>Total Employees</h2>
             <p style="font-size: 24px; color: #4CAF50;">
                 <?php
@@ -91,7 +73,7 @@ while ($row = mysqli_fetch_assoc($monthlyAttendanceResult)) {
         </div>
 
         <!-- Total Attendance Records -->
-        <div style="flex: 1; min-width: 250px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 20px;">
+        <div style="flex: 1; min-width: 200px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 15px;">
             <h2>Total Attendance Records</h2>
             <p style="font-size: 24px; color: #F44336;">
                 <?php
@@ -105,38 +87,29 @@ while ($row = mysqli_fetch_assoc($monthlyAttendanceResult)) {
                 ?>
             </p>
             <a href="manage_attendance.php" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #6a4bc7; color: white; border-radius: 4px; text-decoration: none;">Manage Attendance</a>
+            <a href="add_attendance.php" class="btn">Add New Attendance</a>
         </div>
-    </div>
+    </div> <!-- Closing div for flex container -->
 
     <!-- Charts Section -->
-    <div style="margin-top: 40px;">
+    <div style="margin-top: 40px;margin-bottom: 40px;">
         <h2>Attendance Overview</h2>
         <div style="display: flex; gap: 30px; flex-wrap: wrap;">
-            <div style="flex: 1; min-width: 300px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 20px;">
-                <canvas id="attendanceChart" style="width: 100%; height: 400px;"></canvas>
+            <div style="flex: 1; min-width: 150px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 15px;">
+                <canvas id="attendanceChart" style="width: 100%; height: 300px;"></canvas> <!-- Adjusted height -->
             </div>
-            <div style="flex: 1; min-width: 300px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 20px;">
-                <canvas id="weeklyAttendanceChart" style="width: 100%; height: 400px;"></canvas>
-            </div>
-            <div style="flex: 1; min-width: 300px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 20px;">
+            <div style="flex: 1; min-width: 150px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 15px;">
                 <canvas id="monthlyAttendanceChart" style="width: 100%; height: 400px;"></canvas>
             </div>
-        </div>
-    </div>
-
-    <!-- Additional Charts -->
-    <div style="margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 100px;">
-            <h2>Monthly Attendance Line Chart</h2>
-            <div style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 20px;">
-                <canvas id="monthlyAttendanceLineChart"></canvas>
-            </div>
-        </div>
-
-        <div style="flex: 1; min-width: 150px;">
-            <h2>Monthly Attendance Bar Chart</h2>
-            <div style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); padding: 20px;">
-                <canvas id="monthlyAttendanceBarChart"></canvas>
+            <div style="flex: 1; min-width: 150px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 15px;">
+                <div>
+                    <h2>To-Do List</h2>
+                    <form id="todoForm">
+                        <input type="text" id="taskInput" placeholder="Enter a new task" required>
+                        <button type="submit">Add Task</button>
+                    </form>
+                    <ul id="taskList"></ul>
+                </div>
             </div>
         </div>
     </div>
@@ -176,72 +149,31 @@ while ($row = mysqli_fetch_assoc($monthlyAttendanceResult)) {
         }
     });
 
-    // Weekly Attendance Data for Line Chart
-    const weeklyAttendanceLabels = <?php echo json_encode(array_column($weeklyAttendanceData, 'week')); ?>;
-    const weeklyAttendanceLineData = {
-        labels: weeklyAttendanceLabels,
-        datasets: [{
-            label: 'Present',
-            data: <?php echo json_encode(array_column($weeklyAttendanceData, 'present')); ?>,
-            borderColor: '#4CAF50',
-            fill: false
-        }, {
-            label: 'Absent',
-            data: <?php echo json_encode(array_column($weeklyAttendanceData, 'absent')); ?>,
-            borderColor: '#F44336',
-            fill: false
-        }, {
-            label: 'Late',
-            data: <?php echo json_encode(array_column($weeklyAttendanceData, 'late')); ?>,
-            borderColor: '#FFC107',
-            fill: false
-        }, {
-            label: 'On Leave',
-            data: <?php echo json_encode(array_column($weeklyAttendanceData, 'on_leave')); ?>,
-            borderColor: '#2196F3',
-            fill: false
-        }]
-    };
-
-    const ctxLine = document.getElementById('weeklyAttendanceChart').getContext('2d');
-    new Chart(ctxLine, {
-        type: 'line',
-        data: weeklyAttendanceLineData,
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Weekly Attendance'
-                }
-            }
-        }
-    });
-
     // Monthly Attendance Data for Bar Chart
-    const monthlyAttendanceLabels = <?php echo json_encode(array_column($monthlyAttendanceData, 'week')); ?>;
+    const monthlyAttendanceLabels = <?php echo json_encode(array_column($weeklyAttendanceData, 'week')); ?>;
     const monthlyAttendanceBarData = {
         labels: monthlyAttendanceLabels,
         datasets: [{
             label: 'Present',
-            data: <?php echo json_encode(array_column($monthlyAttendanceData, 'present')); ?>,
+            data: <?php echo json_encode(array_column($weeklyAttendanceData, 'present')); ?>,
             backgroundColor: '#4CAF50'
         }, {
             label: 'Absent',
-            data: <?php echo json_encode(array_column($monthlyAttendanceData, 'absent')); ?>,
+            data: <?php echo json_encode(array_column($weeklyAttendanceData, 'absent')); ?>,
             backgroundColor: '#F44336'
         }, {
             label: 'Late',
-            data: <?php echo json_encode(array_column($monthlyAttendanceData, 'late')); ?>,
+            data: <?php echo json_encode(array_column($weeklyAttendanceData, 'late')); ?>,
             backgroundColor: '#FFC107'
         }, {
             label: 'On Leave',
-            data: <?php echo json_encode(array_column($monthlyAttendanceData, 'on_leave')); ?>,
+            data: <?php echo json_encode(array_column($weeklyAttendanceData, 'on_leave')); ?>,
             backgroundColor: '#2196F3'
         }]
     };
 
-    const ctxBar = document.getElementById('monthlyAttendanceChart').getContext('2d');
-    new Chart(ctxBar, {
+    const ctxMonthlyBar = document.getElementById('monthlyAttendanceChart').getContext('2d');
+    new Chart(ctxMonthlyBar, {
         type: 'bar',
         data: monthlyAttendanceBarData,
         options: {
@@ -250,7 +182,38 @@ while ($row = mysqli_fetch_assoc($monthlyAttendanceResult)) {
                     display: true,
                     text: 'Monthly Attendance'
                 }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Week'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Number of Employees'
+                    },
+                    beginAtZero: true
+                }
             }
+        }
+    });
+
+    // To-Do List Functionality
+    const todoForm = document.getElementById('todoForm');
+    const taskInput = document.getElementById('taskInput');
+    const taskList = document.getElementById('taskList');
+
+    todoForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const taskText = taskInput.value.trim();
+        if (taskText !== '') {
+            const listItem = document.createElement('li');
+            listItem.textContent = taskText;
+            taskList.appendChild(listItem);
+            taskInput.value = '';
         }
     });
 </script>

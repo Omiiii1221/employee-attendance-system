@@ -3,7 +3,7 @@
     --primary-color: #335555; /* Dark blue */
     --secondary-color: #3E5879; /* Medium blue */
     --accent-color: #D8C4B6; /* Warm beige */
-    --background-color: #F5EFE7; /* Light beige */
+    --background-color: #95cdf2; /* Light beige */
     --text-color: #5050e2; /* Dark text */
     --text-light: #FFFFFF; /* Light text */
     --font-family: 'Arial', sans-serif;
@@ -32,6 +32,7 @@ body {
     padding-top: var(--navbar-height); /* Add padding to account for the fixed navbar */
     display: flex;
     flex-direction: column;
+    position: relative; /* Add this line */
 }
 
 /* Sidebar */
@@ -185,6 +186,7 @@ body {
     border-radius: var(--border-radius);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: calc(var(--navbar-height) + 20px); /* Ensure the container is below the navbar */
+    position: relative; /* Add this line */
 }
 
 /* Form Elements */
@@ -378,10 +380,12 @@ tr:hover {
 footer {
     background-color: #212121; 
     color: #ffffff; /* White text */
-     text-align: center; 
+    text-align: center; 
     padding: 20px;
     font-size: 14px;
     margin-top: auto; /* Pushes footer to the bottom */
+    width: 100%; 
+    position: relative; /* Ensure the footer is not positioned absolutely */
 }
 
 footer a {
