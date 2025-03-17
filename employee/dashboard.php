@@ -1,5 +1,13 @@
 <?php
-session_start();
+session_start(); 
+
+if (!isset($_SESSION['employee_id'])) {
+    echo "<p>Employee not found. Please log in again.</p>";
+    exit;
+}
+
+$employee_id = $_SESSION['employee_id'];
+
 include '../config/db.php'; // Include database connection
 include '../includes/header.php'; // Include the header
 

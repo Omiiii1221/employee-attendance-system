@@ -195,10 +195,15 @@ form {
     gap: 20px;
 }
 
+.form-group {
+    margin-bottom: 20px;
+}
+
 label {
     font-weight: bold;
     color: var(--text-color);
     margin-bottom: 5px;
+    display: block;
 }
 
 input, select, textarea {
@@ -206,8 +211,10 @@ input, select, textarea {
     border: 1px solid var(--secondary-color);
     border-radius: var(--border-radius);
     background: var(--background-color);
-    color: var (--text-color);
-    transition: border-color var(--transition-speed);
+    color: var(--text-color); /* Fixed the color variable */
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 input:focus, select:focus, textarea:focus {
@@ -215,9 +222,14 @@ input:focus, select:focus, textarea:focus {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
+input:hover, select:hover, textarea:hover {
+    border-color: var(--primary-color);
+}
+
 /* Buttons */
 button, .btn {
     padding: 12px 20px;
+    margin-top: 10px;
     border: none;
     border-radius: var(--border-radius);
     background: var(--secondary-color);

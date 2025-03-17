@@ -12,7 +12,7 @@
 
         <footer>
             <p>&copy; <?php echo date("Y"); ?> Employee Attendance Management System. All rights reserved.</p>
-            <p>Developed by @Gaikwad Om</p>
+            <p>Developed by @Gaikwad Om  @Jayesh Rupnar  @Vishal Todkar </p>
             <div class="social-icons">
                 <a href="https://facebook.com" target="_blank" aria-label="Facebook">
                     <i class="fab fa-facebook"></i>

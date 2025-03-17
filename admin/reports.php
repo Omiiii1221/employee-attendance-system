@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include '../includes/navbar.php'; ?> <!-- Include navigation bar -->
     
     <div class="container">
-        <h1>Generate Attendance Report</h1>
+        <h1>Generate Reports</h1>
 
         <!-- Report Generation Form -->
         <form action="" method="POST">

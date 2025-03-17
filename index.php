@@ -64,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="submit">Login</button>
                 </form>
                 <div class="auth-links">
-                    <a href="./auth/forgot_password.php">Forgot Password?</a>
-                    <p>Don't have an account? <a href="./auth/register.php">Register here</a></p>
+                <a href="./auth/forgot_password.php" style="color: white; text-decoration: none;">Forgot Password?</a>
+                <p style="margin-top: 5px; color: white;">Don't have an account? <a href="./auth/register.php" style="color: white; text-decoration: none;">Register here</a></p>
                 </div>
             </div>
         </div>
